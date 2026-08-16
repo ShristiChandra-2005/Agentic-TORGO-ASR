@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-08-16T21:19:27.463400",
+  "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "torch": "2.5.1+cu121",
+  "gpu": {
+    "cuda_available": true,
+    "gpu_count": 1,
+    "gpu_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+    "cuda_version": "12.1",
+    "total_memory_gb": 6.0
+  },
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "torch": "2.5.1+cu121",
+    "transformers": "5.13.0",
+    "datasets": "5.0.0",
+    "accelerate": "1.14.0",
+    "librosa": "0.11.0",
+    "soundfile": "0.14.0",
+    "jiwer": "4.0.0",
+    "matplotlib": "3.11.0",
+    "scikit-learn": "1.7.2"
+  }
+}

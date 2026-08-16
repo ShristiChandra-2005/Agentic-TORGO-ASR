@@ -1,0 +1,13 @@
+{
+  "status": "selected_pending_manual_review",
+  "best_system": "Character v4 + Word v3",
+  "best_source_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_7_word_agent_v3_from_character_v4_predictions.csv",
+  "best_prediction_column": "word_corrected",
+  "final_output_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_selected_character_word_predictions.csv",
+  "comparison_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_final_available_pipeline_comparison.csv",
+  "wer": 0.2090627188156447,
+  "cer": 0.2379979570990807,
+  "sentence_accuracy": 0.7243439854507664,
+  "test_set_used": false,
+  "next_step": "Manual review, then Sentence/OLM Agent."
+}

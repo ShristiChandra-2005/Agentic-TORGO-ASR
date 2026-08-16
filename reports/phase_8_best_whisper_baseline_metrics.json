@@ -1,0 +1,13 @@
+{
+  "run_name": "best_whisper_baseline",
+  "model_path": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\models\\whisper_small_finetuned\\best_model",
+  "samples": 3849,
+  "wer": 0.32599779933980194,
+  "cer": 0.3400055001178597,
+  "sentence_accuracy": 0.7233047544816835,
+  "runtime_seconds": 1209.1665358543396,
+  "seconds_per_sample": 0.31415082770962316,
+  "prediction_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_best_whisper_baseline_validation_predictions.csv",
+  "speaker_report_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_best_whisper_baseline_speaker_report.csv",
+  "condition_report_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_best_whisper_baseline_condition_report.csv"
+}

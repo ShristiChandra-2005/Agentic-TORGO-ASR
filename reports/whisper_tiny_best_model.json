@@ -1,0 +1,16 @@
+{
+  "experiment_id": "PHASE6_20260710_101534",
+  "model_key": "whisper_tiny",
+  "model_id": "openai/whisper-tiny",
+  "best_model_path": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\models\\whisper_tiny_finetuned\\best_model",
+  "validation_wer": 2.6133840152045615,
+  "validation_cer": 3.5203504360807734,
+  "validation_sentence_accuracy": 0.4084177708495713,
+  "validation_runtime_seconds": 563.9814260005951,
+  "samples_per_second": 6.824692840143176,
+  "avg_inference_time_seconds": 0.1399581588438871,
+  "eval_loss": 0.27152448892593384,
+  "parameters": 37760640,
+  "model_size_mb": 144.05,
+  "test_set_used": false
+}

@@ -1,0 +1,4 @@
+split,samples,speakers,conditions,duration_hours
+train,9950,9,"{'control': np.int64(6407), 'dysarthric': np.int64(3543)}",8.182756979166667
+validation,3849,3,"{'control': np.int64(3099), 'dysarthric': np.int64(750)}",3.368926111111111
+test,3030,3,"{'control': np.int64(1646), 'dysarthric': np.int64(1384)}",2.5574358680555553

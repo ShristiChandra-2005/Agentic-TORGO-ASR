@@ -1,0 +1,43 @@
+{
+  "phase": "Phase 8.18 - 8.20 Final Verification and Validation Freeze",
+  "status": "frozen_on_validation_pending_test_evaluation",
+  "selected_pipeline": "Best upstream Whisper/GAN -> Character Agent v4 -> Word Agent v3 -> Final Verification Agent",
+  "sentence_agent_v2_frozen": false,
+  "sentence_agent_v2_decision": "Not frozen after manual inspection because sentence accuracy dropped and repeated hallucination cases remained.",
+  "input_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_selected_character_word_predictions.csv",
+  "output_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_20_final_agentic_validation_predictions.csv",
+  "final_output_column": "final_agentic_corrected",
+  "ground_truth_visible_to_agents": false,
+  "test_set_used": false,
+  "verification_policy": {
+    "remove_known_artifacts": [
+      "jpeg",
+      "jpg",
+      "png"
+    ],
+    "remove_artifact_phrases": [
+      [
+        "input",
+        "images",
+        "story",
+        "starters"
+      ]
+    ],
+    "collapse_repeated_words_min_repeat": 3,
+    "collapse_repeated_phrases_max_len": 8,
+    "reject_empty_after_cleanup": true
+  },
+  "final_metrics": {
+    "wer": 0.20586175852755828,
+    "cer": 0.23446216704643671,
+    "sentence_accuracy": 0.7243439854507664
+  },
+  "comparison_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_20_final_pipeline_comparison.csv",
+  "manual_review_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_20_final_manual_review_examples.csv",
+  "figures": {
+    "wer": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_20_final_wer_comparison.png",
+    "cer": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_20_final_cer_comparison.png",
+    "metric_labels": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_20_final_metric_labels.png"
+  },
+  "next_phase": "Phase 9 ablation on validation, then freeze and run test set."
+}

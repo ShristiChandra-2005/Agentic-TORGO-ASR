@@ -1,0 +1,17 @@
+{
+  "experiment_id": "PHASE6_20260816_211933",
+  "timestamp": "2026-08-16T21:19:33.993646",
+  "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "torch": "2.5.1+cu121",
+  "transformers": "5.13.0",
+  "datasets": "5.0.0",
+  "accelerate": "1.14.0",
+  "cuda_available": true,
+  "torch_cuda_version": "12.1",
+  "device": "cuda",
+  "seed": 42,
+  "resume_training": false,
+  "gpu_name": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "gpu_memory_gb": 6.0
+}

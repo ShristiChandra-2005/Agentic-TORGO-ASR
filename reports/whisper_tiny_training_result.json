@@ -1,0 +1,30 @@
+{
+  "experiment_id": "PHASE6_20260710_101534",
+  "model_key": "whisper_tiny",
+  "model_id": "openai/whisper-tiny",
+  "seed": 42,
+  "run_mode": "fresh",
+  "resume_training": false,
+  "best_model_path": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\models\\whisper_tiny_finetuned\\best_model",
+  "hyperparameters_json": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\whisper_tiny_hyperparameters.json",
+  "epochs": 3,
+  "learning_rate": 5e-06,
+  "batch_size": 1,
+  "gradient_accumulation_steps": 4,
+  "effective_batch_size": 4,
+  "weight_decay": 0.01,
+  "warmup_ratio": 0.05,
+  "gradient_checkpointing": false,
+  "fp16": true,
+  "train_loss": 0.6574705941053577,
+  "eval_loss": 0.27152448892593384,
+  "training_runtime_seconds": 5976.962597370148,
+  "gpu_memory_mb": {
+    "allocated_mb": 453.14,
+    "reserved_mb": 960.0,
+    "max_allocated_mb": 867.7
+  },
+  "parameters": 37760640,
+  "model_size_mb": 144.05,
+  "environment_json": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_6_environment_info.json"
+}

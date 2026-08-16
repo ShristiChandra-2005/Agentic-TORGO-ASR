@@ -1,0 +1,24 @@
+{
+  "phase": 2,
+  "phase_name": "Dataset Cleaning",
+  "status": "completed",
+  "timestamp": "2026-07-09T20:55:06.198050",
+  "input_samples": 17635,
+  "usable_from_phase_1": 17201,
+  "removed_empty_transcripts": 372,
+  "removed_duplicate_paths": 0,
+  "removed_duplicate_hashes": 0,
+  "final_clean_samples": 16829,
+  "unique_speakers": 15,
+  "unique_sessions": 4,
+  "conditions": {
+    "control": 11152,
+    "dysarthric": 5677
+  },
+  "avg_duration": 3.0181726929704675,
+  "total_duration_hours": 14.109118958333333,
+  "avg_word_count": 2.5610553211717866,
+  "clean_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\clean_dataset.csv",
+  "clean_parquet": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\clean_dataset.parquet",
+  "next_phase": "Phase 3 - Speaker Independent Split"
+}

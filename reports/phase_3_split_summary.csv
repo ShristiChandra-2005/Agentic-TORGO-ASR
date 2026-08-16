@@ -1,0 +1,4 @@
+split,samples,speakers,duration_hours
+train,9950,9,8.182756979166667
+validation,3849,3,3.368926111111111
+test,3030,3,2.5574358680555553

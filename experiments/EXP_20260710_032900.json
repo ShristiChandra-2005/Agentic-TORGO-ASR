@@ -1,0 +1,11 @@
+{
+  "experiment_id": "EXP_20260710_032900",
+  "title": "An Explainable, Reproducible, and Speaker-Independent Framework for Dysarthric Speech Recognition using Whisper Fine-Tuning, GAN-based Data Augmentation, and Agentic AI-based Transcript Refinement",
+  "project_root": "E:\\AI_Project\\Agentic_TORGO_ASR_Project",
+  "data_root": "E:\\AI_Project\\TORGO_DATASET",
+  "seed": 42,
+  "start_time": "2026-07-10T03:29:00.394215",
+  "status": "initialized",
+  "completed_phases": [],
+  "current_phase": 0
+}

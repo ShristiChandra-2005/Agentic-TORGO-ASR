@@ -1,0 +1,9 @@
+{
+  "selected_pipeline": "Best Whisper Baseline",
+  "selected_gan": "No GAN improved baseline",
+  "best_validation_wer": 0.32599779933980194,
+  "best_validation_cer": 0.3400055001178597,
+  "best_sentence_accuracy": 0.7233047544816835,
+  "best_model_path": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\models\\whisper_small_finetuned\\best_model",
+  "selection_rule": "Lowest validation WER, CER as tie-breaker. Test set not used."
+}

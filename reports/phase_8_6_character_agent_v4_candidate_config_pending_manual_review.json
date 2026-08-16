@@ -1,0 +1,56 @@
+{
+  "phase": "Phase 8.6 - Character Correction Agent v4 Candidate Config",
+  "status": "pending_manual_review_not_final_freeze",
+  "selected_upstream_pipeline": "Best Whisper Baseline",
+  "selected_prediction_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_best_whisper_baseline_validation_predictions.csv",
+  "vocabulary_source": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\train.csv",
+  "vocabulary_policy": "Training transcripts only. No validation ground-truth leakage.",
+  "agent_definition": "Character-level candidate correction for likely malformed ASR tokens.",
+  "uses_llm": false,
+  "ground_truth_visible_to_agent": false,
+  "test_set_used": false,
+  "selected_config": {
+    "name": "more_recall_safe",
+    "confidence_threshold": 0.82,
+    "min_similarity": 0.78,
+    "min_margin": 0.02,
+    "max_edit_extra": 0
+  },
+  "protection_policy": "Protects numbers, alphanumeric/punctuation-heavy tokens, and very short tokens. Does not claim full named-entity protection.",
+  "candidate_generation": "Length-window candidate search without hard first-letter restriction.",
+  "score_policy": "Main score uses edit similarity and sequence similarity; small support from phonetic-light similarity, frequency, context, and repeated-character signal.",
+  "metrics": {
+    "before_wer": 0.32599779933980194,
+    "after_wer": 0.32539761928578576,
+    "before_cer": 0.3400055001178597,
+    "after_cer": 0.3398876404494382,
+    "before_sentence_accuracy": 0.7233047544816835,
+    "after_sentence_accuracy": 0.7243439854507664,
+    "total_samples": 3849,
+    "total_changed": 6,
+    "metric_improved_count": 6,
+    "metric_worsened_count": 0,
+    "metric_unchanged_after_change_count": 0,
+    "metric_missed_remaining_error_count": 1059,
+    "metric_unchanged_or_not_attempted_count": 2784,
+    "metric_precision": 1.0,
+    "wer_delta": -0.0006001800540161861,
+    "cer_delta": -0.00011785966842148277,
+    "sentence_accuracy_delta": 0.0010392309690828716
+  },
+  "outputs": {
+    "validation_dataset_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_1_character_agent_v4_validation_dataset.csv",
+    "character_predictions_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_2_character_agent_v4_predictions.csv",
+    "metrics_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_3_character_agent_v4_metrics.csv",
+    "tuning_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_4_character_agent_v4_config_tuning.csv",
+    "manual_examples_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_5_character_agent_v4_manual_examples.csv",
+    "correction_log_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_3_character_agent_v4_correction_log.csv"
+  },
+  "figures": {
+    "wer": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_character_agent_v4_wer_before_after.png",
+    "cer": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_character_agent_v4_cer_before_after.png",
+    "metric_labels": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_character_agent_v4_metric_labels.png",
+    "config_tuning": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_character_agent_v4_config_tuning.png"
+  },
+  "next_step": "Compare v4 against v3. Use the better character output as input to Word Agent."
+}

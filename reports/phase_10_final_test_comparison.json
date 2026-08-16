@@ -1,0 +1,46 @@
+[
+  {
+    "Pipeline":"Best Whisper (no GAN improved baseline) + Agentic AI",
+    "WER":0.2974807466,
+    "CER":0.4239299007,
+    "BLEU":69.5072917037,
+    "ROUGE-L":0.7060268619,
+    "Sentence Accuracy":0.6366336634,
+    "Runtime (s)":984.4914770126,
+    "Seconds \/ Sample":0.3249146789,
+    "Samples":3030
+  },
+  {
+    "Pipeline":"Whisper Small",
+    "WER":0.4978462342,
+    "CER":0.5980407361,
+    "BLEU":51.6885442648,
+    "ROUGE-L":0.7041284599,
+    "Sentence Accuracy":0.6353135314,
+    "Runtime (s)":951.3583414555,
+    "Seconds \/ Sample":0.3139796506,
+    "Samples":3030
+  },
+  {
+    "Pipeline":"Best Whisper (no GAN improved baseline)",
+    "WER":0.4978462342,
+    "CER":0.5980407361,
+    "BLEU":51.6885442648,
+    "ROUGE-L":0.7041284599,
+    "Sentence Accuracy":0.6353135314,
+    "Runtime (s)":928.0607998371,
+    "Seconds \/ Sample":0.306290693,
+    "Samples":3030
+  },
+  {
+    "Pipeline":"Whisper Tiny",
+    "WER":3.5094635165,
+    "CER":3.8043579404,
+    "BLEU":10.0844563785,
+    "ROUGE-L":0.5224311148,
+    "Sentence Accuracy":0.4194719472,
+    "Runtime (s)":499.6629571915,
+    "Seconds \/ Sample":0.1649052664,
+    "Samples":3030
+  }
+]

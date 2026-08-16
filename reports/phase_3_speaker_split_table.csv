@@ -1,0 +1,16 @@
+split,speaker,samples
+test,M02,785
+test,M05,599
+test,MC04,1646
+train,F01,242
+train,F03,1114
+train,F04,686
+train,FC01,308
+train,FC02,2222
+train,M03,816
+train,M04,685
+train,MC01,2183
+train,MC03,1694
+validation,FC03,1964
+validation,M01,750
+validation,MC02,1135

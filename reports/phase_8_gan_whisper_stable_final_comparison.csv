@@ -1,0 +1,4 @@
+Pipeline,Method,WER,CER,Sentence Accuracy,Runtime Seconds,Model Path
+Best Whisper Baseline,Phase 6 Best Whisper,0.32599779933980194,0.3400055001178597,0.7233047544816835,1209.1665358543396,E:\AI_Project\Agentic_TORGO_ASR_Project\models\whisper_small_finetuned\best_model
+Best Whisper + CWGAN-GP,Stable Fine-tuning,8.545663699109733,9.024279091694822,0.3829566121070408,2185.044474363327,E:\AI_Project\Agentic_TORGO_ASR_Project\models\phase_8_stable_best_whisper_plus_cwgan_gp\best_model
+Best Whisper + ACGAN,Stable Fine-tuning,10.264379313794139,10.171564390665514,0.26760197453884127,2109.722192287445,E:\AI_Project\Agentic_TORGO_ASR_Project\models\phase_8_stable_best_whisper_plus_acgan\best_model

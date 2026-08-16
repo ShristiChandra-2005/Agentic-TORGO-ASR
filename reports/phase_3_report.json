@@ -1,0 +1,42 @@
+{
+  "phase": 3,
+  "phase_name": "Speaker-Independent Split + Leakage Check",
+  "status": "completed",
+  "timestamp": "2026-07-09T20:57:11.811180",
+  "train_samples": 9950,
+  "validation_samples": 3849,
+  "test_samples": 3030,
+  "train_speakers": [
+    "F01",
+    "F03",
+    "F04",
+    "FC01",
+    "FC02",
+    "M03",
+    "M04",
+    "MC01",
+    "MC03"
+  ],
+  "validation_speakers": [
+    "FC03",
+    "M01",
+    "MC02"
+  ],
+  "test_speakers": [
+    "M02",
+    "M05",
+    "MC04"
+  ],
+  "no_critical_leakage": true,
+  "train_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\train.csv",
+  "validation_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\validation.csv",
+  "test_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\test.csv",
+  "train_parquet": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\train.parquet",
+  "validation_parquet": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\validation.parquet",
+  "test_parquet": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\test.parquet",
+  "split_summary_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_3_split_summary.csv",
+  "speaker_split_table_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_3_speaker_split_table.csv",
+  "leakage_report_json": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_3_leakage_report.json",
+  "leakage_report_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_3_leakage_report.csv",
+  "next_phase": "Phase 4 - Exploratory Data Analysis"
+}

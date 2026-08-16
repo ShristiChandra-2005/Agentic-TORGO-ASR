@@ -1,0 +1,14 @@
+{
+  "phase": 5,
+  "phase_name": "Whisper Dataset Preparation",
+  "status": "completed",
+  "timestamp": "2026-07-09T21:00:49.832301",
+  "dataset_path": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\outputs\\whisper_hf_dataset",
+  "train_samples": 9950,
+  "validation_samples": 3849,
+  "test_samples": 3030,
+  "test_set_used_for_training": false,
+  "memory_strategy": "lazy_audio_loading_in_collator",
+  "summary_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_5_whisper_dataset_summary.csv",
+  "next_phase": "Phase 6 - Whisper Tiny and Small Baselines + Fine-tuning"
+}

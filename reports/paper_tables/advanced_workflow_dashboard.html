@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Agentic Dysarthric ASR Workflow Dashboard</title>
+<style>
+:root {
+  --navy:#08275c;
+  --blue:#0f49a5;
+  --green:#1c7c38;
+  --orange:#c56b00;
+  --purple:#5b2b90;
+  --red:#b3261e;
+  --ink:#111827;
+  --muted:#5f6673;
+  --line:#cfd7e6;
+  --bg:#f4f7fb;
+  --panel:#ffffff;
+  --soft-blue:#edf4ff;
+  --soft-green:#effaf1;
+  --soft-orange:#fff5e8;
+  --soft-purple:#f5efff;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Segoe UI, Arial, sans-serif;
+}
+.wrap {
+  max-width:1500px;
+  margin:0 auto;
+  padding:20px;
+}
+.header {
+  background:linear-gradient(135deg,#061b41,#0a397f);
+  color:white;
+  border-radius:8px;
+  padding:16px 22px;
+  text-align:center;
+  margin-bottom:14px;
+}
+.header h1 {
+  margin:0;
+  font-size:30px;
+  letter-spacing:.02em;
+}
+.header .sub {
+  margin-top:4px;
+  font-size:18px;
+}
+.header .accent {
+  color:#ffd21f;
+  font-weight:800;
+}
+.main-grid {
+  display:grid;
+  grid-template-columns:230px 1fr 310px;
+  gap:14px;
+}
+@media(max-width:1150px) {
+  .main-grid { grid-template-columns:1fr; }
+}
+.panel {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:14px;
+}
+.panel-title {
+  font-weight:800;
+  color:var(--navy);
+  margin-bottom:10px;
+  text-transform:uppercase;
+}
+.dataset-box {
+  border:1px solid #8da7d7;
+  border-radius:8px;
+  background:linear-gradient(#ffffff,#f4f8ff);
+}
+.config-box {
+  margin-top:12px;
+  border:1px solid #ab8bd8;
+  background:#fbf7ff;
+}
+.config-head {
+  background:var(--purple);
+  color:white;
+  margin:-14px -14px 12px;
+  padding:10px 14px;
+  border-radius:8px 8px 0 0;
+  font-weight:800;
+}
+.workflow-title {
+  background:var(--navy);
+  color:white;
+  text-align:center;
+  padding:8px;
+  border-radius:5px;
+  font-weight:800;
+  margin-bottom:12px;
+}
+.workflow {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+.workflow.second {
+  grid-template-columns:repeat(5,1fr);
+  margin-top:14px;
+}
+@media(max-width:1050px) {
+  .workflow,.workflow.second { grid-template-columns:1fr 1fr; }
+}
+.step {
+  position:relative;
+  min-height:176px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:white;
+  padding:12px 12px 12px;
+}
+.step::after {
+  content:"→";
+  position:absolute;
+  right:-15px;
+  top:45%;
+  font-size:30px;
+  color:var(--navy);
+  font-weight:900;
+}
+.step.no-arrow::after {
+  content:"";
+}
+.badge {
+  position:absolute;
+  top:-10px;
+  left:10px;
+  width:25px;
+  height:25px;
+  border-radius:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:900;
+}
+.b1 { background:var(--green); }
+.b2 { background:var(--blue); }
+.b3 { background:#d38a00; }
+.b4 { background:#123e90; }
+.b5 { background:var(--purple); }
+.b6 { background:#d99a00; }
+.b7 { background:var(--green); }
+.b8 { background:#e26b00; }
+.b9 { background:#1359a8; }
+.b10 { background:#18803b; }
+.step h3 {
+  margin:10px 0 8px;
+  color:var(--navy);
+  font-size:15px;
+  text-align:center;
+}
+.step ul {
+  padding-left:17px;
+  font-size:12px;
+  line-height:1.55;
+}
+.step p {
+  font-size:12px;
+  line-height:1.5;
+}
+.step.green { background:var(--soft-green); border-color:#8fc79e; }
+.step.blue { background:var(--soft-blue); border-color:#90ace0; }
+.step.orange { background:var(--soft-orange); border-color:#e1b36d; }
+.step.purple { background:var(--soft-purple); border-color:#b7a0dd; }
+.step.redline { border-color:#e6a2a2; }
+.icon {
+  font-size:36px;
+  text-align:center;
+  margin:8px 0;
+}
+.quote {
+  border:1px solid var(--line);
+  background:white;
+  border-radius:7px;
+  padding:9px;
+  text-align:center;
+  font-weight:700;
+  font-size:12px;
+}
+.decisions {
+  border:1px solid #0c6931;
+}
+.decisions-head {
+  background:#0c6931;
+  color:white;
+  margin:-14px -14px 12px;
+  padding:10px 14px;
+  border-radius:8px 8px 0 0;
+  font-weight:800;
+  text-align:center;
+}
+.check {
+  margin:8px 0;
+  font-size:13px;
+}
+.check::before {
+  content:"✓";
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#36a936;
+  color:white;
+  font-size:12px;
+  font-weight:900;
+  margin-right:7px;
+}
+.agent {
+  display:grid;
+  grid-template-columns:45px 1fr;
+  gap:10px;
+  padding:10px 0;
+  border-bottom:1px solid var(--line);
+}
+.agent:last-child {
+  border-bottom:0;
+}
+.bot {
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  background:#eaf2ff;
+}
+.metrics {
+  margin-top:14px;
+  border:1px solid #8da7d7;
+  border-radius:8px;
+  padding:12px;
+}
+.metric-row {
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:12px;
+}
+@media(max-width:1050px) {
+  .metric-row { grid-template-columns:1fr 1fr; }
+}
+.metric {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:12px;
+  text-align:center;
+}
+.metric b {
+  display:block;
+  color:var(--navy);
+  font-size:13px;
+}
+.metric span {
+  display:block;
+  color:var(--navy);
+  font-size:23px;
+  font-weight:900;
+  margin-top:4px;
+}
+.metric small {
+  color:green;
+  font-weight:700;
+}
+.bottom-grid {
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1.2fr .8fr;
+  gap:12px;
+  margin-top:14px;
+}
+@media(max-width:1200px) {
+  .bottom-grid { grid-template-columns:1fr; }
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+}
+th,td {
+  border-bottom:1px solid var(--line);
+  padding:6px 7px;
+  text-align:left;
+}
+th {
+  color:var(--navy);
+}
+.good-text {
+  color:green;
+  font-weight:800;
+}
+.takeaway {
+  background:#fffaf2;
+  border:1px solid #e0bf86;
+}
+.footer {
+  margin-top:14px;
+  background:var(--navy);
+  color:white;
+  border-radius:7px;
+  padding:10px;
+  text-align:center;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>AGENTIC AI-ASSISTED DYSARTHRIC SPEECH RECOGNITION PIPELINE</h1>
+  <div class="sub"><span class="accent">TORGO Dataset</span> → Multi-Level Correction with Agents → Final Evaluation</div>
+</div>
+
+<div class="main-grid">
+
+  <div>
+    <div class="panel dataset-box">
+      <div class="panel-title">1. TORGO Dataset</div>
+      <div class="icon">〰️ → 🗣️</div>
+      <p><b>16,829</b> clean utterances</p>
+      <p>• 15 speakers &nbsp; | &nbsp; 4 sessions</p>
+      <p>• Speaker-independent split</p>
+      <div class="quote" style="text-align:left">
+        Train: <b>9,950</b><br>
+        Validation: <b>3,849</b><br>
+        Test: <b>3,030</b>
+      </div>
+      <p>Sample rate: <b>16 kHz</b></p>
+      <p>Format: <b>WAV</b></p>
+    </div>
+
+    <div class="panel config-box">
+      <div class="config-head">Configuration</div>
+      <p>• Whisper Tiny baseline</p>
+      <p>• Whisper Small primary</p>
+      <p>• Validation-only tuning</p>
+      <p>• Test touched once</p>
+      <p>• Final pipeline frozen before test</p>
+    </div>
+  </div>
+
+  <div>
+    <div class="workflow-title">END-TO-END WORKFLOW</div>
+
+    <div class="workflow">
+      <div class="step green">
+        <div class="badge b1">1</div>
+        <h3>Preprocessing</h3>
+        <div class="icon">〰️</div>
+        <ul>
+          <li>Audio normalization</li>
+          <li>Resampling 16 kHz</li>
+          <li>Transcript cleaning</li>
+          <li>Mel features</li>
+        </ul>
+      </div>
+
+      <div class="step blue">
+        <div class="badge b2">2</div>
+        <h3>Whisper ASR</h3>
+        <div class="icon">🧠</div>
+        <ul>
+          <li>Whisper Tiny baseline</li>
+          <li>Whisper Small primary</li>
+          <li>Validation WER/CER</li>
+        </ul>
+      </div>
+
+      <div class="step orange">
+        <div class="badge b3">3</div>
+        <h3>GAN Comparison</h3>
+        <div class="icon">〰️ vs 〰️</div>
+        <ul>
+          <li>CWGAN-GP tested</li>
+          <li>ACGAN tested</li>
+          <li>No downstream gain</li>
+        </ul>
+      </div>
+
+      <div class="step blue">
+        <div class="badge b4">4</div>
+        <h3>Best Whisper</h3>
+        <div class="icon">🏅</div>
+        <p>Whisper Small selected as upstream ASR based on validation performance.</p>
+      </div>
+
+      <div class="step purple no-arrow">
+        <div class="badge b5">5</div>
+        <h3>Raw ASR</h3>
+        <div class="icon">📄</div>
+        <div class="quote">"the cat sits<br>on the mat today"</div>
+        <p>May contain character, word, and repetition errors.</p>
+      </div>
+    </div>
+
+    <div class="workflow second">
+      <div class="step orange">
+        <div class="badge b6">6</div>
+        <h3>Character Agent v4</h3>
+        <div class="icon">🤖</div>
+        <ul>
+          <li>Character-level errors</li>
+          <li>Phonetic-light matching</li>
+          <li>Safe correction</li>
+        </ul>
+      </div>
+
+      <div class="step green">
+        <div class="badge b7">7</div>
+        <h3>Word Agent v3</h3>
+        <div class="icon">🤖</div>
+        <ul>
+          <li>Word confusion correction</li>
+          <li>Repetition handling</li>
+          <li>Artifact cleanup</li>
+        </ul>
+      </div>
+
+      <div class="step redline">
+        <div class="badge b8">8</div>
+        <h3>Sentence Agent v2</h3>
+        <div class="icon">🤖</div>
+        <div class="quote">Tested but not frozen</div>
+        <p>Slight WER/CER gain but sentence accuracy reduced.</p>
+      </div>
+
+      <div class="step blue">
+        <div class="badge b9">9</div>
+        <h3>Final Verification</h3>
+        <div class="icon">🛡️</div>
+        <ul>
+          <li>Repeated phrase cleanup</li>
+          <li>Artifact removal</li>
+          <li>Safety validation</li>
+        </ul>
+      </div>
+
+      <div class="step green no-arrow">
+        <div class="badge b10">10</div>
+        <h3>Final Transcript</h3>
+        <div class="icon">✅</div>
+        <div class="quote">Final agentic corrected transcript</div>
+        <p>Ready for evaluation.</p>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="panel-title">Evaluation on Test Set - Phase 10</div>
+      <div class="metric-row">
+        <div class="metric"><b>WER</b><span>0.2975</span><small>vs 0.4978</small></div>
+        <div class="metric"><b>CER</b><span>0.4239</span><small>vs 0.5980</small></div>
+        <div class="metric"><b>BLEU</b><span>69.51</span></div>
+        <div class="metric"><b>ROUGE-L</b><span>0.7060</span></div>
+        <div class="metric"><b>Sent. Acc.</b><span>0.6366</span></div>
+        <div class="metric"><b>Runtime</b><span>984.49s</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel decisions">
+      <div class="decisions-head">Key Decisions</div>
+      <div class="check">Best Whisper Small selected</div>
+      <div class="check">CWGAN-GP rejected</div>
+      <div class="check">ACGAN rejected</div>
+      <div class="check">Character Agent v4 selected</div>
+      <div class="check">Word Agent v3 selected</div>
+      <div class="check">Sentence v2 tested, not frozen</div>
+      <div class="check">Final Verification included</div>
+      <div class="check">Test evaluated once</div>
+    </div>
+
+    <div class="panel" style="margin-top:12px">
+      <div class="panel-title">Agent Summary</div>
+
+      <div class="agent">
+        <div class="bot">🤖</div>
+        <div><b>Character Agent v4</b><br>Character-level spelling and phonetic correction.</div>
+      </div>
+
+      <div class="agent">
+        <div class="bot">🤖</div>
+        <div><b>Word Agent v3</b><br>Word confusion, repetition, and artifact handling.</div>
+      </div>
+
+      <div class="agent">
+        <div class="bot">🤖</div>
+        <div><b>Sentence Agent v2</b><br>Grammar baseline tested but not frozen.</div>
+      </div>
+
+      <div class="agent">
+        <div class="bot">🛡️</div>
+        <div><b>Verification Agent</b><br>Final safety and output cleanup.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-grid">
+  <div class="panel">
+    <div class="panel-title">Validation Progression</div>
+    <table>
+      <tr><th>Stage</th><th>WER</th><th>CER</th><th>Sent. Acc.</th></tr>
+      <tr><td>Whisper Raw</td><td>0.3260</td><td>0.3400</td><td>-</td></tr>
+      <tr><td>Character v4</td><td>0.3254</td><td>0.3399</td><td>-</td></tr>
+      <tr><td>Word v3</td><td>0.2091</td><td>0.2380</td><td>-</td></tr>
+      <tr><td>Sentence v2</td><td>0.2079</td><td>0.2370</td><td>tested</td></tr>
+      <tr><td><b>Final Verified</b></td><td class="good-text">0.2059</td><td class="good-text">0.2345</td><td>0.7243</td></tr>
+    </table>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Ablation Summary</div>
+    <table>
+      <tr><th>Component</th><th>Impact</th></tr>
+      <tr><td>Character v4</td><td>Small spelling-level gain</td></tr>
+      <tr><td>Word v3</td><td>Major WER/CER improvement</td></tr>
+      <tr><td>Sentence v2</td><td>Tested, not frozen</td></tr>
+      <tr><td>GANs</td><td>No downstream gain</td></tr>
+      <tr><td>Verification</td><td>Final cleanup gain</td></tr>
+    </table>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Why This Workflow?</div>
+    <p>✅ Dysarthric ASR errors occur at multiple levels: character, word, repetition, and sentence structure.</p>
+    <p>✅ A staged correction pipeline isolates each error type and avoids uncontrolled rewriting.</p>
+    <p>✅ Validation-only tuning prevents leakage.</p>
+    <p>✅ Final test was run once after freezing the pipeline.</p>
+  </div>
+
+  <div class="panel takeaway">
+    <div class="panel-title">Key Takeaway</div>
+    <p>
+      The final agentic pipeline improves held-out test WER from
+      <b>0.4978</b> to <b>0.2975</b>
+      and CER from <b>0.5980</b> to <b>0.4239</b>.
+    </p>
+    <p>
+      Relative reduction: <b>40.2%</b> WER and <b>29.1%</b> CER.
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  🔒 TEST SET FROZEN | EVALUATED EXACTLY ONCE | NO RETUNING | REPRODUCIBLE RESULTS
+</div>
+
+</div>
+</body>
+</html>

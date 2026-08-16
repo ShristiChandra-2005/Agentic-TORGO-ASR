@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Agentic Dysarthric ASR - Advanced Workflow Dashboard</title>
+<style>
+:root {
+  --bg:#f5f7fb;
+  --panel:#ffffff;
+  --ink:#152033;
+  --muted:#667085;
+  --line:#d7deea;
+  --blue:#0f3f91;
+  --blue2:#2457c5;
+  --green:#177245;
+  --orange:#c27500;
+  --red:#b13a2f;
+  --purple:#5a3ca0;
+  --soft-blue:#edf3ff;
+  --soft-green:#ecfdf3;
+  --soft-orange:#fff6e8;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Segoe UI, Inter, Arial, sans-serif;
+  line-height:1.55;
+}
+.wrapper {
+  max-width:1280px;
+  margin:0 auto;
+  padding:34px 26px 72px;
+}
+.hero {
+  background:linear-gradient(135deg,#08245b,#0f3f91);
+  color:white;
+  padding:24px 28px;
+  border-radius:12px;
+  margin-bottom:28px;
+}
+.hero h1 {
+  margin:0;
+  font-size:34px;
+  line-height:1.1;
+}
+.hero p {
+  margin:8px 0 0;
+  color:#dbe8ff;
+  font-size:17px;
+}
+section { margin-top:34px; }
+h2 { font-size:23px; margin:0 0 16px; }
+h3 { font-size:16px; margin:0 0 10px; }
+.grid4 {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.grid3 {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.grid2 {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+@media(max-width:980px) {
+  .grid4,.grid3,.grid2 { grid-template-columns:1fr; }
+}
+.card,.metric-card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:18px;
+}
+.metric-label {
+  font-size:12px;
+  color:var(--muted);
+  font-weight:800;
+  text-transform:uppercase;
+}
+.metric-value {
+  margin-top:5px;
+  font-size:30px;
+  font-weight:850;
+  color:var(--blue2);
+}
+.metric-note {
+  margin-top:4px;
+  color:var(--muted);
+  font-size:13px;
+}
+.workflow-panel {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+}
+.workflow-title {
+  text-align:center;
+  background:var(--blue);
+  color:white;
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:800;
+  margin-bottom:16px;
+}
+.flow {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+.flow2 {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+  margin-top:12px;
+}
+@media(max-width:1100px) {
+  .flow,.flow2 { grid-template-columns:1fr 1fr; }
+}
+.node {
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:14px;
+  min-height:150px;
+  position:relative;
+  background:#fff;
+}
+.node:nth-child(1), .node.pre { border-color:#9cc6a5; background:#f7fff9; }
+.node:nth-child(2), .node.whisper { border-color:#9eb7ee; background:#f8fbff; }
+.node:nth-child(3), .node.gan { border-color:#e3ba70; background:#fffaf0; }
+.node:nth-child(4), .node.best { border-color:#9eb7ee; background:#f8fbff; }
+.node:nth-child(5), .node.raw { border-color:#b49ddb; background:#fbf8ff; }
+.node.char { border-color:#e1bc70; background:#fffaf0; }
+.node.word { border-color:#92c99c; background:#f7fff9; }
+.node.sent { border-color:#efb478; background:#fff6e8; }
+.node.verify { border-color:#9eb7ee; background:#f8fbff; }
+.node.final { border-color:#89bd98; background:#f4fff8; }
+.badge-num {
+  position:absolute;
+  top:-10px;
+  left:10px;
+  width:26px;
+  height:26px;
+  border-radius:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  background:var(--blue2);
+  font-weight:900;
+}
+.node h4 {
+  margin:8px 0 8px;
+  color:var(--blue);
+  font-size:14px;
+  text-transform:uppercase;
+}
+.node ul {
+  margin:8px 0 0;
+  padding-left:18px;
+  font-size:13px;
+}
+.node p {
+  margin:6px 0;
+  font-size:13px;
+}
+.decision {
+  background:var(--soft-green);
+  border-left:4px solid var(--green);
+  padding:14px;
+  border-radius:8px;
+}
+.agent-summary {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+@media(max-width:980px) {
+  .agent-summary { grid-template-columns:1fr; }
+}
+.agent {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:14px;
+}
+.agent b {
+  display:block;
+  margin-bottom:6px;
+  color:var(--blue);
+}
+.agent ul {
+  margin:0;
+  padding-left:18px;
+  font-size:13px;
+}
+.bar-row {
+  display:grid;
+  grid-template-columns:230px 1fr 80px;
+  gap:10px;
+  align-items:center;
+  margin:10px 0;
+}
+.bar-label { font-size:13px; }
+.bar-track {
+  height:14px;
+  background:#edf0f5;
+  border-radius:999px;
+  overflow:hidden;
+}
+.bar-fill {
+  height:100%;
+  background:linear-gradient(90deg,var(--blue2),#6a96f7);
+}
+.bar-value {
+  text-align:right;
+  font-size:13px;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.table-wrap {
+  overflow-x:auto;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+th,td {
+  padding:9px 10px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  vertical-align:top;
+}
+th {
+  color:var(--muted);
+  font-size:12px;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.muted { color:var(--muted); }
+.codebox {
+  background:#111827;
+  color:#e5e7eb;
+  border-radius:10px;
+  padding:16px;
+  overflow-x:auto;
+  font-family:Consolas, monospace;
+  font-size:13px;
+}
+footer {
+  margin-top:50px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+<header class="hero">
+  <h1>Agentic AI-Assisted Dysarthric Speech Recognition Pipeline</h1>
+  <p>TORGO Dataset → Whisper ASR → Multi-Level Correction Agents → Final Evaluation</p>
+</header>
+
+<section>
+  <h2>Headline Test Results</h2>
+  <div class="grid4">
+    
+    <div class="metric-card">
+      <div class="metric-label">Final Test WER</div>
+      <div class="metric-value">0.2975</div>
+      <div class="metric-note">↓ vs 0.4978 baseline</div>
+    </div>
+    
+    
+    <div class="metric-card">
+      <div class="metric-label">Final Test CER</div>
+      <div class="metric-value">0.4239</div>
+      <div class="metric-note">↓ vs 0.5980 baseline</div>
+    </div>
+    
+    
+    <div class="metric-card">
+      <div class="metric-label">BLEU</div>
+      <div class="metric-value">69.51</div>
+      <div class="metric-note">↑ vs baseline</div>
+    </div>
+    
+    
+    <div class="metric-card">
+      <div class="metric-label">ROUGE-L</div>
+      <div class="metric-value">0.7060</div>
+      <div class="metric-note">Final test quality</div>
+    </div>
+    
+  </div>
+</section>
+
+<section>
+  <h2>End-to-End Research Workflow</h2>
+  <div class="workflow-panel">
+    <div class="workflow-title">END-TO-END WORKFLOW</div>
+
+    <div class="flow">
+      <div class="node pre">
+        <div class="badge-num">1</div>
+        <h4>Preprocessing</h4>
+        <p>Audio normalization, resampling, transcript cleaning.</p>
+        <ul>
+          <li>16 kHz WAV</li>
+          <li>speaker-independent split</li>
+          <li>clean train/validation/test</li>
+        </ul>
+      </div>
+
+      <div class="node whisper">
+        <div class="badge-num">2</div>
+        <h4>Whisper ASR</h4>
+        <p>Whisper Tiny and Whisper Small baselines.</p>
+        <ul>
+          <li>Tiny baseline</li>
+          <li>Small primary</li>
+          <li>WER/CER selection</li>
+        </ul>
+      </div>
+
+      <div class="node gan">
+        <div class="badge-num">3</div>
+        <h4>GAN Comparison</h4>
+        <p>CWGAN-GP and ACGAN tested for enhancement.</p>
+        <ul>
+          <li>GANs evaluated</li>
+          <li>No downstream gain</li>
+          <li>GANs rejected</li>
+        </ul>
+      </div>
+
+      <div class="node best">
+        <div class="badge-num">4</div>
+        <h4>Best Whisper</h4>
+        <p>Whisper Small selected as upstream ASR.</p>
+        <ul>
+          <li>validation selected</li>
+          <li>test not touched</li>
+        </ul>
+      </div>
+
+      <div class="node raw">
+        <div class="badge-num">5</div>
+        <h4>Raw ASR</h4>
+        <p>Raw transcription may contain character, word, and repetition errors.</p>
+      </div>
+    </div>
+
+    <div class="flow2">
+      <div class="node char">
+        <div class="badge-num">6</div>
+        <h4>Character Agent v4</h4>
+        <p>Fixes spelling-level malformed tokens.</p>
+        <ul>
+          <li>edit similarity</li>
+          <li>phonetic-light matching</li>
+          <li>safe thresholds</li>
+        </ul>
+      </div>
+
+      <div class="node word">
+        <div class="badge-num">7</div>
+        <h4>Word Agent v3</h4>
+        <p>Fixes word confusion and repeated artifacts.</p>
+        <ul>
+          <li>confusion words</li>
+          <li>repetition handling</li>
+          <li>artifact cleanup</li>
+        </ul>
+      </div>
+
+      <div class="node sent">
+        <div class="badge-num">8</div>
+        <h4>Sentence Agent v2</h4>
+        <p>Tested as T5 grammar baseline but not frozen.</p>
+        <ul>
+          <li>slight WER/CER gain</li>
+          <li>sentence accuracy drop</li>
+          <li>not selected</li>
+        </ul>
+      </div>
+
+      <div class="node verify">
+        <div class="badge-num">9</div>
+        <h4>Final Verification</h4>
+        <p>Final deterministic cleanup and safety validation.</p>
+        <ul>
+          <li>collapse loops</li>
+          <li>remove artifacts</li>
+          <li>reject empty cleanup</li>
+        </ul>
+      </div>
+
+      <div class="node final">
+        <div class="badge-num">10</div>
+        <h4>Final Transcript</h4>
+        <p>Final agentic transcript evaluated once on frozen test set.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Key Validation Decisions</h2>
+  <div class="grid2">
+    <div class="decision">
+      <b>Frozen selection:</b>
+      Best Whisper baseline → Character Agent v4 → Word Agent v3 → Final Verification Agent.
+      Sentence Agent v2 was evaluated but not frozen.
+    </div>
+    <div class="decision">
+      <b>Test protocol:</b>
+      All tuning was performed on validation only. The test set was evaluated once after the pipeline was frozen.
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Agent Summary</h2>
+  <div class="agent-summary">
+    <div class="agent"><b>Character Agent v4</b><ul><li>character errors</li><li>phonetic-light matching</li><li>safe recall strategy</li></ul></div>
+    <div class="agent"><b>Word Agent v3</b><ul><li>word confusion</li><li>repetition cleanup</li><li>artifact cleanup</li></ul></div>
+    <div class="agent"><b>Sentence Agent v2</b><ul><li>T5 grammar baseline</li><li>tested but rejected</li><li>not frozen</li></ul></div>
+    <div class="agent"><b>Verification Agent</b><ul><li>final cleanup</li><li>loop reduction</li><li>safe output</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>Validation Ablation Visualization</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>WER by System</h3>
+      
+        <div class="bar-row">
+          <div class="bar-label">E5 Final Verified Agentic</div>
+          <div class="bar-track"><div class="bar-fill" style="width:63.15%"></div></div>
+          <div class="bar-value">0.2059</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E6 Character + Word + Sentence v2</div>
+          <div class="bar-track"><div class="bar-fill" style="width:63.76%"></div></div>
+          <div class="bar-value">0.2079</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E3 Whisper + Character + Word</div>
+          <div class="bar-track"><div class="bar-fill" style="width:64.13%"></div></div>
+          <div class="bar-value">0.2091</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E4 Selected Character + Word Pre-Verification</div>
+          <div class="bar-track"><div class="bar-fill" style="width:64.13%"></div></div>
+          <div class="bar-value">0.2091</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E2 Whisper + Character</div>
+          <div class="bar-track"><div class="bar-fill" style="width:99.82%"></div></div>
+          <div class="bar-value">0.3254</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E1 Whisper Raw</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.00%"></div></div>
+          <div class="bar-value">0.3260</div>
+        </div>
+        
+    </div>
+    <div class="card">
+      <h3>CER by System</h3>
+      
+        <div class="bar-row">
+          <div class="bar-label">E5 Final Verified Agentic</div>
+          <div class="bar-track"><div class="bar-fill" style="width:68.96%"></div></div>
+          <div class="bar-value">0.2345</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E6 Character + Word + Sentence v2</div>
+          <div class="bar-track"><div class="bar-fill" style="width:69.71%"></div></div>
+          <div class="bar-value">0.2370</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E3 Whisper + Character + Word</div>
+          <div class="bar-track"><div class="bar-fill" style="width:70.00%"></div></div>
+          <div class="bar-value">0.2380</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E4 Selected Character + Word Pre-Verification</div>
+          <div class="bar-track"><div class="bar-fill" style="width:70.00%"></div></div>
+          <div class="bar-value">0.2380</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E2 Whisper + Character</div>
+          <div class="bar-track"><div class="bar-fill" style="width:99.97%"></div></div>
+          <div class="bar-value">0.3399</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">E1 Whisper Raw</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.00%"></div></div>
+          <div class="bar-value">0.3400</div>
+        </div>
+        
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Final Test Visualization</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Test WER</h3>
+      
+        <div class="bar-row">
+          <div class="bar-label">Best Whisper (no GAN improved baseline) + Agentic AI</div>
+          <div class="bar-track"><div class="bar-fill" style="width:8.48%"></div></div>
+          <div class="bar-value">0.2975</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">Whisper Small</div>
+          <div class="bar-track"><div class="bar-fill" style="width:14.19%"></div></div>
+          <div class="bar-value">0.4978</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">Best Whisper (no GAN improved baseline)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:14.19%"></div></div>
+          <div class="bar-value">0.4978</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">Whisper Tiny</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.00%"></div></div>
+          <div class="bar-value">3.5095</div>
+        </div>
+        
+    </div>
+    <div class="card">
+      <h3>Test CER</h3>
+      
+        <div class="bar-row">
+          <div class="bar-label">Best Whisper (no GAN improved baseline) + Agentic AI</div>
+          <div class="bar-track"><div class="bar-fill" style="width:11.14%"></div></div>
+          <div class="bar-value">0.4239</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">Whisper Small</div>
+          <div class="bar-track"><div class="bar-fill" style="width:15.72%"></div></div>
+          <div class="bar-value">0.5980</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">Best Whisper (no GAN improved baseline)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:15.72%"></div></div>
+          <div class="bar-value">0.5980</div>
+        </div>
+        
+
+        <div class="bar-row">
+          <div class="bar-label">Whisper Tiny</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.00%"></div></div>
+          <div class="bar-value">3.8044</div>
+        </div>
+        
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Dataset Splits</h2>
+  <div class='table-wrap'><table><thead><tr>
+<th>Split</th>
+<th>Samples</th>
+</tr></thead><tbody>
+<tr>
+<td>Train</td>
+<td>9950</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>3849</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>3030</td>
+</tr>
+</tbody></table></div>
+</section>
+
+<section>
+  <h2>Whisper Baseline</h2>
+  <div class='table-wrap'><table><thead><tr>
+<th>Model</th>
+<th>Validation WER</th>
+<th>Validation CER</th>
+</tr></thead><tbody>
+<tr>
+<td>Whisper Tiny (fine-tuned)</td>
+<td>2.6134</td>
+<td>3.5204</td>
+</tr>
+<tr>
+<td>Whisper Small (fine-tuned)</td>
+<td>0.3017</td>
+<td>0.2802</td>
+</tr>
+</tbody></table></div>
+</section>
+
+<section>
+  <h2>GAN Comparison</h2>
+  <div class='table-wrap'><table><thead><tr>
+<th>GAN</th>
+<th>Generated Samples</th>
+<th>Accepted Samples</th>
+<th>Acceptance Rate</th>
+<th>Mean SNR</th>
+<th>Mean Energy</th>
+<th>Mean Max Abs</th>
+<th>Quality Score</th>
+<th>Selected as Best (downstream WER)</th>
+</tr></thead><tbody>
+<tr>
+<td>CWGAN-GP</td>
+<td>9950</td>
+<td>9226</td>
+<td>0.9272</td>
+<td>9.5063</td>
+<td>0.0111</td>
+<td>1.0000</td>
+<td>0.8500</td>
+<td>False</td>
+</tr>
+<tr>
+<td>ACGAN</td>
+<td>9950</td>
+<td>9884</td>
+<td>0.9934</td>
+<td>12.3028</td>
+<td>0.0118</td>
+<td>0.8388</td>
+<td>0.9967</td>
+<td>False</td>
+</tr>
+</tbody></table></div>
+</section>
+
+<section>
+  <h2>Validation Ablation Table</h2>
+  <div class='table-wrap'><table><thead><tr>
+<th>System</th>
+<th>Prediction Column</th>
+<th>WER</th>
+<th>CER</th>
+<th>Sentence Accuracy</th>
+<th>Samples</th>
+<th>WER Reduction vs Whisper</th>
+<th>CER Reduction vs Whisper</th>
+</tr></thead><tbody>
+<tr>
+<td>E5 Final Verified Agentic</td>
+<td>final_agentic_corrected</td>
+<td>0.2059</td>
+<td>0.2345</td>
+<td>0.7243</td>
+<td>3849</td>
+<td>0.3685</td>
+<td>0.3104</td>
+</tr>
+<tr>
+<td>E6 Character + Word + Sentence v2</td>
+<td>sentence_corrected</td>
+<td>0.2079</td>
+<td>0.2370</td>
+<td>0.7238</td>
+<td>3849</td>
+<td>0.3624</td>
+<td>0.3029</td>
+</tr>
+<tr>
+<td>E3 Whisper + Character + Word</td>
+<td>word_corrected</td>
+<td>0.2091</td>
+<td>0.2380</td>
+<td>0.7243</td>
+<td>3849</td>
+<td>0.3587</td>
+<td>0.3000</td>
+</tr>
+<tr>
+<td>E4 Selected Character + Word Pre-Verification</td>
+<td>pre_verification_corrected</td>
+<td>0.2091</td>
+<td>0.2380</td>
+<td>0.7243</td>
+<td>3849</td>
+<td>0.3587</td>
+<td>0.3000</td>
+</tr>
+<tr>
+<td>E2 Whisper + Character</td>
+<td>character_corrected</td>
+<td>0.3254</td>
+<td>0.3399</td>
+<td>0.7243</td>
+<td>3849</td>
+<td>0.0018</td>
+<td>0.0003</td>
+</tr>
+<tr>
+<td>E1 Whisper Raw</td>
+<td>whisper_raw</td>
+<td>0.3260</td>
+<td>0.3400</td>
+<td>0.7233</td>
+<td>3849</td>
+<td>0.0000</td>
+<td>0.0000</td>
+</tr>
+</tbody></table></div>
+</section>
+
+<section>
+  <h2>Final Test Results</h2>
+  <div class='table-wrap'><table><thead><tr>
+<th>Pipeline</th>
+<th>WER</th>
+<th>CER</th>
+<th>BLEU</th>
+<th>ROUGE-L</th>
+<th>Sentence Accuracy</th>
+<th>Runtime (s)</th>
+<th>Seconds / Sample</th>
+<th>Samples</th>
+</tr></thead><tbody>
+<tr>
+<td>Best Whisper (no GAN improved baseline) + Agentic AI</td>
+<td>0.2975</td>
+<td>0.4239</td>
+<td>69.5073</td>
+<td>0.7060</td>
+<td>0.6366</td>
+<td>984.4915</td>
+<td>0.3249</td>
+<td>3030</td>
+</tr>
+<tr>
+<td>Whisper Small</td>
+<td>0.4978</td>
+<td>0.5980</td>
+<td>51.6885</td>
+<td>0.7041</td>
+<td>0.6353</td>
+<td>951.3583</td>
+<td>0.3140</td>
+<td>3030</td>
+</tr>
+<tr>
+<td>Best Whisper (no GAN improved baseline)</td>
+<td>0.4978</td>
+<td>0.5980</td>
+<td>51.6885</td>
+<td>0.7041</td>
+<td>0.6353</td>
+<td>928.0608</td>
+<td>0.3063</td>
+<td>3030</td>
+</tr>
+<tr>
+<td>Whisper Tiny</td>
+<td>3.5095</td>
+<td>3.8044</td>
+<td>10.0845</td>
+<td>0.5224</td>
+<td>0.4195</td>
+<td>499.6630</td>
+<td>0.1649</td>
+<td>3030</td>
+</tr>
+</tbody></table></div>
+</section>
+
+<section>
+  <h2>Qualitative Examples</h2>
+  <div class='table-wrap'><table><thead><tr>
+<th>sample_id</th>
+<th>ground_truth</th>
+<th>whisper_raw</th>
+<th>final_agentic_corrected</th>
+<th>wer_raw</th>
+<th>wer_final</th>
+</tr></thead><tbody>
+<tr>
+<td>torgo_009599</td>
+<td>left</td>
+<td>yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes</td>
+<td>yes yes</td>
+<td>64.0000</td>
+<td>2.0000</td>
+</tr>
+<tr>
+<td>torgo_007982</td>
+<td>relax</td>
+<td>relife all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all</td>
+<td>relife all all</td>
+<td>63.0000</td>
+<td>3.0000</td>
+</tr>
+<tr>
+<td>torgo_007915</td>
+<td>lip</td>
+<td>slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip</td>
+<td>slip slip</td>
+<td>63.0000</td>
+<td>2.0000</td>
+</tr>
+<tr>
+<td>torgo_007969</td>
+<td>pit</td>
+<td>pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit</td>
+<td>pit pit</td>
+<td>63.0000</td>
+<td>1.0000</td>
+</tr>
+<tr>
+<td>torgo_007378</td>
+<td>air</td>
+<td>another story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story</td>
+<td>another story story</td>
+<td>63.0000</td>
+<td>3.0000</td>
+</tr>
+<tr>
+<td>torgo_009651</td>
+<td>pat</td>
+<td>pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat</td>
+<td>pat pat</td>
+<td>63.0000</td>
+<td>1.0000</td>
+</tr>
+<tr>
+<td>torgo_009758</td>
+<td>sip</td>
+<td>sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip</td>
+<td>sip sip</td>
+<td>62.0000</td>
+<td>1.0000</td>
+</tr>
+<tr>
+<td>torgo_009739</td>
+<td>tear</td>
+<td>tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear</td>
+<td>tear tear</td>
+<td>62.0000</td>
+<td>1.0000</td>
+</tr>
+</tbody></table></div>
+</section>
+
+<section>
+  <h2>Resume / GitHub Summary</h2>
+  <div class="codebox">Built an agentic dysarthric ASR pipeline using Whisper, GAN augmentation experiments, and deterministic post-ASR correction agents, reducing held-out test WER from 0.4978 to 0.2975 and CER from 0.5980 to 0.4239 on TORGO.</div>
+</section>
+
+<footer>
+  Generated from real project tables in reports/paper_tables. No model inference is run by this page.
+</footer>
+
+</div>
+</body>
+</html>

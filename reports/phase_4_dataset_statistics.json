@@ -1,0 +1,31 @@
+{
+  "phase": 4,
+  "phase_name": "Exploratory Data Analysis",
+  "status": "completed",
+  "timestamp": "2026-07-09T20:58:35.139987",
+  "total_samples": 16829,
+  "train_samples": 9950,
+  "validation_samples": 3849,
+  "test_samples": 3030,
+  "total_speakers": 15,
+  "train_speakers": 9,
+  "validation_speakers": 3,
+  "test_speakers": 3,
+  "conditions": {
+    "control": 11152,
+    "dysarthric": 5677
+  },
+  "duration": {
+    "mean": 3.018172692970468,
+    "std": 1.9757202891421504,
+    "min": 0.3,
+    "max": 25.315,
+    "total_hours": 14.109118958333335
+  },
+  "word_count": {
+    "mean": 2.5610553211717866,
+    "std": 2.875481332962258,
+    "min": 1,
+    "max": 28
+  }
+}

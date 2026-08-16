@@ -1,0 +1,12 @@
+\begin{table}
+\caption{GAN speech-enhancement comparison: quality-only proxy metrics (Phase 7) vs the downstream Whisper WER/CER selection actually used (Phase 8).}
+\label{tab:table_3_gan_comparison}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+GAN & Generated Samples & Accepted Samples & Acceptance Rate & Mean SNR & Mean Energy & Mean Max Abs & Quality Score & Selected as Best (downstream WER) \\
+\midrule
+CWGAN-GP & 9950 & 9226 & 0.9272 & 9.5063 & 0.0111 & 1.0000 & 0.8500 & False \\
+ACGAN & 9950 & 9884 & 0.9934 & 12.3028 & 0.0118 & 0.8388 & 0.9967 & False \\
+\bottomrule
+\end{tabular}
+\end{table}

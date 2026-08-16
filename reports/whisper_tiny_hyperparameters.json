@@ -1,0 +1,20 @@
+{
+  "experiment_id": "PHASE6_20260710_223136",
+  "model_key": "whisper_tiny",
+  "model_id": "openai/whisper-tiny",
+  "seed": 42,
+  "resume_training": true,
+  "hyperparameters": {
+    "learning_rate": 5e-06,
+    "epochs": 3,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 4,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "fp16": true,
+    "gradient_checkpointing": false,
+    "early_stopping_patience": 3,
+    "early_stopping_threshold": 0.0005,
+    "max_new_tokens": 64
+  }
+}

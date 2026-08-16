@@ -1,0 +1,29 @@
+{
+  "experiment_id": "PHASE6_20260710_005251",
+  "split": "validation_finetuned_whisper_tiny",
+  "samples": 3849,
+  "wer": 2.6133840152045615,
+  "cer": 3.5203504360807734,
+  "sentence_accuracy": 0.4084177708495713,
+  "sample_wer_statistics": {
+    "mean": 4.97209146616785,
+    "std": 12.908941494694352,
+    "ci95_low": 4.5642674958669405,
+    "ci95_high": 5.379915436468759
+  },
+  "sample_cer_statistics": {
+    "mean": 10.078589314224898,
+    "std": 21.653477099541078,
+    "ci95_low": 9.394504797676102,
+    "ci95_high": 10.762673830773693
+  },
+  "runtime_seconds": 563.9814260005951,
+  "seconds_per_sample": 0.14652674097183557,
+  "samples_per_second": 6.824692840143176,
+  "avg_inference_time_seconds": 0.1399581588438871,
+  "speaker_report_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\whisper_tiny_finetuned_validation_predictions_speaker_report.csv",
+  "condition_report_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\whisper_tiny_finetuned_validation_predictions_condition_report.csv",
+  "speaker_summary_json": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\whisper_tiny_finetuned_validation_predictions_speaker_summary.json",
+  "top20_worst_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\whisper_tiny_finetuned_validation_predictions_top20_worst.csv",
+  "top20_best_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\whisper_tiny_finetuned_validation_predictions_top20_best.csv"
+}

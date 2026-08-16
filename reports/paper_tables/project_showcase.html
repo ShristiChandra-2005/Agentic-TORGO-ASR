@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Agentic Dysarthric ASR Project</title>
+<style>
+  :root {
+    --bg:#f7f8fa;
+    --panel:#ffffff;
+    --ink:#172033;
+    --muted:#667085;
+    --line:#d9dee8;
+    --accent:#2457c5;
+    --good:#1f7a4d;
+    --warn:#9a5b00;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: Inter, Segoe UI, Arial, sans-serif;
+    line-height:1.55;
+  }
+  .wrap {
+    max-width:1180px;
+    margin:0 auto;
+    padding:42px 28px 80px;
+  }
+  header {
+    padding:34px 0 28px;
+    border-bottom:1px solid var(--line);
+  }
+  .tag {
+    color:var(--accent);
+    font-weight:700;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  h1 {
+    margin:8px 0 10px;
+    font-size:38px;
+    line-height:1.08;
+  }
+  .sub {
+    max-width:900px;
+    color:var(--muted);
+    font-size:17px;
+  }
+  section {
+    margin-top:34px;
+  }
+  h2 {
+    margin:0 0 14px;
+    font-size:22px;
+  }
+  h3 {
+    margin:0 0 10px;
+    font-size:16px;
+  }
+  .grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+  }
+  .grid2 {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  @media(max-width:900px) {
+    .grid, .grid2 { grid-template-columns:1fr; }
+  }
+  .card {
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+  }
+  .metric {
+    font-size:28px;
+    font-weight:800;
+    color:var(--accent);
+    margin-top:8px;
+  }
+  .muted {
+    color:var(--muted);
+  }
+  .flow {
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:10px;
+  }
+  .step {
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px;
+    min-height:90px;
+  }
+  .step b {
+    display:block;
+    margin-bottom:6px;
+  }
+  table {
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    background:white;
+  }
+  th, td {
+    border-bottom:1px solid var(--line);
+    padding:8px 9px;
+    text-align:left;
+    vertical-align:top;
+  }
+  th {
+    font-size:12px;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  .note {
+    border-left:4px solid var(--accent);
+    padding:12px 14px;
+    background:#eef4ff;
+    border-radius:6px;
+  }
+  .resume {
+    background:#f0fff7;
+    border-left:4px solid var(--good);
+    padding:14px;
+    border-radius:6px;
+  }
+  code {
+    background:#eef1f6;
+    padding:2px 5px;
+    border-radius:4px;
+  }
+  footer {
+    margin-top:48px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:13px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="tag">Research Project Showcase</div>
+  <h1>Agentic AI-Assisted Dysarthric Speech Recognition</h1>
+  <p class="sub">
+    A full ASR research pipeline for dysarthric speech using TORGO, Whisper, GAN-based enhancement experiments,
+    deterministic correction agents, validation ablation, and final held-out test evaluation.
+  </p>
+</header>
+
+<section>
+  <h2>Headline Results</h2>
+  <div class="grid">
+    <div class="card"><h3>Final Test WER</h3><div class="metric">0.2975</div></div>
+    <div class="card"><h3>Final Test CER</h3><div class="metric">0.4239</div></div>
+    <div class="card"><h3>BLEU</h3><div class="metric">69.5073</div></div>
+    <div class="card"><h3>ROUGE-L</h3><div class="metric">0.7060</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Research Workflow</h2>
+  <div class="flow">
+    <div class="step"><b>1. TORGO</b><span class="muted">Dysarthric and control speech with transcripts.</span></div>
+    <div class="step"><b>2. Preprocessing</b><span class="muted">Resampling, transcript cleaning, validation.</span></div>
+    <div class="step"><b>3. Whisper</b><span class="muted">Tiny/Small baseline and fine-tuned ASR.</span></div>
+    <div class="step"><b>4. GAN Study</b><span class="muted">CWGAN-GP and ACGAN augmentation comparison.</span></div>
+    <div class="step"><b>5. Agents</b><span class="muted">Character, Word, Sentence baseline, Verification.</span></div>
+    <div class="step"><b>6. Final Test</b><span class="muted">Frozen pipeline evaluated once on held-out test set.</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Final Agentic Pipeline</h2>
+  <div class="note">
+    <b>Selected pipeline:</b>
+    Best Whisper baseline → Character Agent v4 → Word Agent v3 → Final Verification Agent.
+    Sentence Agent v2 was evaluated but not frozen because manual inspection showed missed repeated hallucination patterns
+    and sentence accuracy dropped slightly.
+  </div>
+</section>
+
+<section>
+  <h2>What Each Agent Does</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Character Agent</h3>
+      <p>Conservative character-level correction for malformed ASR tokens. It uses train-only vocabulary, edit similarity, phonetic-light similarity, and confidence thresholds.</p>
+    </div>
+    <div class="card">
+      <h3>Word Agent</h3>
+      <p>Corrects valid-but-wrong confusion words and removes repeated ASR artifacts such as repeated tokens and image-prompt hallucination patterns.</p>
+    </div>
+    <div class="card">
+      <h3>Sentence Agent Baseline</h3>
+      <p>Local seq2seq grammar-correction baseline with detector and verifier. Evaluated but not frozen in the final system.</p>
+    </div>
+    <div class="card">
+      <h3>Verification Agent</h3>
+      <p>Final deterministic safety layer that removes obvious artifacts and repeated hallucinations without broad semantic rewriting.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Dataset Splits</h2>
+  <table>
+<thead><tr>
+<th>Split</th>
+<th>Samples</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Train</td>
+<td>9950</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>3849</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>3030</td>
+</tr>
+</tbody></table>
+</section>
+
+<section>
+  <h2>Whisper Baseline</h2>
+  <table>
+<thead><tr>
+<th>Model</th>
+<th>Validation WER</th>
+<th>Validation CER</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Whisper Tiny (fine-tuned)</td>
+<td>2.6134</td>
+<td>3.5204</td>
+</tr>
+<tr>
+<td>Whisper Small (fine-tuned)</td>
+<td>0.3017</td>
+<td>0.2802</td>
+</tr>
+</tbody></table>
+</section>
+
+<section>
+  <h2>GAN Comparison</h2>
+  <table>
+<thead><tr>
+<th>GAN</th>
+<th>Generated Samples</th>
+<th>Accepted Samples</th>
+<th>Acceptance Rate</th>
+<th>Mean SNR</th>
+<th>Mean Energy</th>
+<th>Mean Max Abs</th>
+<th>Quality Score</th>
+<th>Selected as Best (downstream WER)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>CWGAN-GP</td>
+<td>9950</td>
+<td>9226</td>
+<td>0.9272</td>
+<td>9.5063</td>
+<td>0.0111</td>
+<td>1.0000</td>
+<td>0.8500</td>
+<td>False</td>
+</tr>
+<tr>
+<td>ACGAN</td>
+<td>9950</td>
+<td>9884</td>
+<td>0.9934</td>
+<td>12.3028</td>
+<td>0.0118</td>
+<td>0.8388</td>
+<td>0.9967</td>
+<td>False</td>
+</tr>
+</tbody></table>
+</section>
+
+<section>
+  <h2>Validation Ablation</h2>
+  <table>
+<thead><tr>
+<th>System</th>
+<th>Prediction Column</th>
+<th>WER</th>
+<th>CER</th>
+<th>Sentence Accuracy</th>
+<th>Samples</th>
+<th>WER Reduction vs Whisper</th>
+<th>CER Reduction vs Whisper</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>E5 Final Verified Agentic</td>
+<td>final_agentic_corrected</td>
+<td>0.2059</td>
+<td>0.2345</td>
+<td>0.7243</td>
+<td>3849</td>
+<td>0.3685</td>
+<td>0.3104</td>
+</tr>
+<tr>
+<td>E6 Character + Word + Sentence v2</td>
+<td>sentence_corrected</td>
+<td>0.2079</td>
+<td>0.2370</td>
+<td>0.7238</td>
+<td>3849</td>
+<td>0.3624</td>
+<td>0.3029</td>
+</tr>
+<tr>
+<td>E3 Whisper + Character + Word</td>
+<td>word_corrected</td>
+<td>0.2091</td>
+<td>0.2380</td>
+<td>0.7243</td>
+<td>3849</td>
+<td>0.3587</td>
+<td>0.3000</td>
+</tr>
+<tr>
+<td>E4 Selected Character + Word Pre-Verification</td>
+<td>pre_verification_corrected</td>
+<td>0.2091</td>
+<td>0.2380</td>
+<td>0.7243</td>
+<td>3849</td>
+<td>0.3587</td>
+<td>0.3000</td>
+</tr>
+<tr>
+<td>E2 Whisper + Character</td>
+<td>character_corrected</td>
+<td>0.3254</td>
+<td>0.3399</td>
+<td>0.7243</td>
+<td>3849</td>
+<td>0.0018</td>
+<td>0.0003</td>
+</tr>
+<tr>
+<td>E1 Whisper Raw</td>
+<td>whisper_raw</td>
+<td>0.3260</td>
+<td>0.3400</td>
+<td>0.7233</td>
+<td>3849</td>
+<td>0.0000</td>
+<td>0.0000</td>
+</tr>
+</tbody></table>
+</section>
+
+<section>
+  <h2>Final Test Results</h2>
+  <table>
+<thead><tr>
+<th>Pipeline</th>
+<th>WER</th>
+<th>CER</th>
+<th>BLEU</th>
+<th>ROUGE-L</th>
+<th>Sentence Accuracy</th>
+<th>Runtime (s)</th>
+<th>Seconds / Sample</th>
+<th>Samples</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Best Whisper (no GAN improved baseline) + Agentic AI</td>
+<td>0.2975</td>
+<td>0.4239</td>
+<td>69.5073</td>
+<td>0.7060</td>
+<td>0.6366</td>
+<td>984.4915</td>
+<td>0.3249</td>
+<td>3030</td>
+</tr>
+<tr>
+<td>Whisper Small</td>
+<td>0.4978</td>
+<td>0.5980</td>
+<td>51.6885</td>
+<td>0.7041</td>
+<td>0.6353</td>
+<td>951.3583</td>
+<td>0.3140</td>
+<td>3030</td>
+</tr>
+<tr>
+<td>Best Whisper (no GAN improved baseline)</td>
+<td>0.4978</td>
+<td>0.5980</td>
+<td>51.6885</td>
+<td>0.7041</td>
+<td>0.6353</td>
+<td>928.0608</td>
+<td>0.3063</td>
+<td>3030</td>
+</tr>
+<tr>
+<td>Whisper Tiny</td>
+<td>3.5095</td>
+<td>3.8044</td>
+<td>10.0845</td>
+<td>0.5224</td>
+<td>0.4195</td>
+<td>499.6630</td>
+<td>0.1649</td>
+<td>3030</td>
+</tr>
+</tbody></table>
+</section>
+
+<section>
+  <h2>Qualitative Examples</h2>
+  <table>
+<thead><tr>
+<th>sample_id</th>
+<th>ground_truth</th>
+<th>whisper_raw</th>
+<th>final_agentic_corrected</th>
+<th>wer_raw</th>
+<th>wer_final</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>torgo_009599</td>
+<td>left</td>
+<td>yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes yes</td>
+<td>yes yes</td>
+<td>64.0000</td>
+<td>2.0000</td>
+</tr>
+<tr>
+<td>torgo_007982</td>
+<td>relax</td>
+<td>relife all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all all</td>
+<td>relife all all</td>
+<td>63.0000</td>
+<td>3.0000</td>
+</tr>
+<tr>
+<td>torgo_007915</td>
+<td>lip</td>
+<td>slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip slip</td>
+<td>slip slip</td>
+<td>63.0000</td>
+<td>2.0000</td>
+</tr>
+<tr>
+<td>torgo_007969</td>
+<td>pit</td>
+<td>pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit pit</td>
+<td>pit pit</td>
+<td>63.0000</td>
+<td>1.0000</td>
+</tr>
+<tr>
+<td>torgo_007378</td>
+<td>air</td>
+<td>another story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story story</td>
+<td>another story story</td>
+<td>63.0000</td>
+<td>3.0000</td>
+</tr>
+<tr>
+<td>torgo_009651</td>
+<td>pat</td>
+<td>pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat pat</td>
+<td>pat pat</td>
+<td>63.0000</td>
+<td>1.0000</td>
+</tr>
+<tr>
+<td>torgo_009758</td>
+<td>sip</td>
+<td>sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip sip</td>
+<td>sip sip</td>
+<td>62.0000</td>
+<td>1.0000</td>
+</tr>
+<tr>
+<td>torgo_009739</td>
+<td>tear</td>
+<td>tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear tear</td>
+<td>tear tear</td>
+<td>62.0000</td>
+<td>1.0000</td>
+</tr>
+</tbody></table>
+</section>
+
+<section>
+  <h2>GitHub / Resume Summary</h2>
+  <div class="resume">
+    <p><b>Resume bullet:</b></p>
+    <p>
+      Built an agentic dysarthric speech recognition pipeline on TORGO using Whisper, GAN-based augmentation experiments,
+      and deterministic post-ASR correction agents, reducing held-out test WER from 0.4978 to 0.2975 and CER from 0.5980 to 0.4239.
+    </p>
+    <p><b>GitHub README title:</b> Agentic AI-Assisted Dysarthric Speech Recognition using Whisper and Post-ASR Correction Agents</p>
+    <p><b>Live demo file:</b> <code>reports/paper_tables/project_showcase.html</code></p>
+  </div>
+</section>
+
+<section>
+  <h2>Important Reproducibility Notes</h2>
+  <ul>
+    <li>Validation was used for tuning and ablation.</li>
+    <li>The final test set was evaluated only after freezing the selected pipeline.</li>
+    <li>Do not upload TORGO raw audio or large model checkpoints to GitHub unless dataset/model licenses allow it.</li>
+    <li>For GitHub, upload code, reports, generated tables, figures, and this dashboard.</li>
+  </ul>
+</section>
+
+<footer>
+  Generated from real project tables in <code>reports/paper_tables</code>. No model inference is run by this showcase page.
+</footer>
+
+</div>
+</body>
+</html>

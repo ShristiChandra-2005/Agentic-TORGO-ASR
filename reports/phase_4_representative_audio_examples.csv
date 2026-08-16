@@ -1,0 +1,3 @@
+sample_id,speaker,condition,audio_path,duration,transcript
+torgo_002831,FC02,control,E:\AI_Project\TORGO_DATASET\FC\FC02\Session3\wav_arrayMic\0233.wav,2.4,up
+torgo_006852,M01,dysarthric,E:\AI_Project\TORGO_DATASET\M\M01\Session2_3\wav_arrayMic\0134.wav,2.7,coupe

@@ -1,0 +1,11 @@
+{
+  "run_name": "best_whisper_plus_acgan_stable",
+  "model_path": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\models\\phase_8_stable_best_whisper_plus_acgan\\best_model",
+  "samples": 3849,
+  "wer": 10.264379313794139,
+  "cer": 10.171564390665514,
+  "sentence_accuracy": 0.26760197453884127,
+  "runtime_seconds": 2109.722192287445,
+  "seconds_per_sample": 0.5481221595966342,
+  "prediction_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_best_whisper_plus_acgan_stable_validation_predictions.csv"
+}

@@ -1,0 +1,3 @@
+System,CSV,Prediction Column,WER,CER,Sentence Accuracy,Samples
+Character v4 + Word v3,E:\AI_Project\Agentic_TORGO_ASR_Project\predictions\phase_8_7_word_agent_v3_from_character_v4_predictions.csv,word_corrected,0.2090627188156447,0.2379979570990807,0.7243439854507664,3849
+Character v4 only,E:\AI_Project\Agentic_TORGO_ASR_Project\predictions\phase_8_2_character_agent_v4_predictions.csv,character_corrected,0.32539761928578576,0.3398876404494382,0.7243439854507664,3849

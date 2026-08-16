@@ -1,0 +1,17 @@
+check,count,values_preview
+speaker_overlap_train_validation,0,[]
+speaker_overlap_train_test,0,[]
+speaker_overlap_validation_test,0,[]
+audio_hash_overlap_train_validation,0,[]
+audio_hash_overlap_train_test,0,[]
+audio_hash_overlap_validation_test,0,[]
+audio_path_overlap_train_validation,0,[]
+audio_path_overlap_train_test,0,[]
+audio_path_overlap_validation_test,0,[]
+shared_prompts_train_validation,708,"['a', 'a few may be hard to find', 'a fire in straw makes a quick blaze', 'a good attitude is unbeatable', 'a long flowing beard clings to his chin', 'a quick touchdown resulted', 'a roll of wire lay near the wall', 'academic aptitude guarantees your diploma', 'ache', 'aches']"
+shared_prompts_train_test,734,"['a', 'a few may be hard to find', 'a fire in straw makes a quick blaze', 'a good attitude is unbeatable', 'a long flowing beard clings to his chin', 'a quick touchdown resulted', 'a roll of wire lay near the wall', 'academic aptitude guarantees your diploma', 'ache', 'aches']"
+shared_prompts_validation_test,705,"['a', 'a few may be hard to find', 'a fire in straw makes a quick blaze', 'a good attitude is unbeatable', 'a long flowing beard clings to his chin', 'a quick touchdown resulted', 'a roll of wire lay near the wall', 'academic aptitude guarantees your diploma', 'ache', 'aches']"
+shared_session_names_train_validation,3,"['Session1', 'Session2', 'Session3']"
+shared_session_names_train_test,2,"['Session1', 'Session2']"
+shared_session_names_validation_test,2,"['Session1', 'Session2']"
+no_critical_leakage,1,

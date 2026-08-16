@@ -1,0 +1,66 @@
+{
+  "phase": "Phase 8.11 - 8.17 Sentence Correction Agent v2",
+  "status": "completed_pending_manual_review",
+  "architecture": "Sentence Error Detector -> Local Seq2Seq Corrector -> Verification Agent",
+  "input_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_selected_character_word_predictions.csv",
+  "input_column": "final_corrected",
+  "output_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_11_sentence_agent_v2_predictions.csv",
+  "model_name": "vennify/t5-base-grammar-correction",
+  "model_type": "local_seq2seq_grammar_correction_baseline",
+  "model_load_source": "local_project_model_dir",
+  "local_model_dir": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\models\\sentence_agent_t5_grammar_correction",
+  "device": "cuda",
+  "uses_llm_or_olm": false,
+  "ground_truth_visible_to_agent": false,
+  "test_set_used": false,
+  "detector_policy": {
+    "skip_short_utterances": true,
+    "detect_long_possible_loops": true,
+    "detect_repetition": true,
+    "detect_basic_grammar_risk_patterns": true
+  },
+  "verification_policy": {
+    "max_word_change_ratio": 0.35,
+    "reject_empty": true,
+    "reject_too_long": true,
+    "reject_too_short": true,
+    "protect_numbers": true,
+    "protect_visible_capitalized_entity_like_tokens": true,
+    "minimum_content_preservation_score": 0.7
+  },
+  "metric_label_note": "metric_improvement_rate is not semantic precision. Manual review is required.",
+  "metrics": {
+    "before_wer": 0.2090627188156447,
+    "after_wer": 0.20786235870761227,
+    "before_cer": 0.2379979570990807,
+    "after_cer": 0.23701579319556848,
+    "before_sentence_accuracy": 0.7243439854507664,
+    "after_sentence_accuracy": 0.723824369966225,
+    "wer_delta": -0.0012003601080324278,
+    "cer_delta": -0.0009821639035122176,
+    "sentence_accuracy_delta": -0.0005196154845413803,
+    "total_samples": 3849,
+    "detector_sent_to_corrector": 15,
+    "detector_kept_without_model": 3834,
+    "total_changed_after_verification": 5,
+    "metric_improved_count": 2,
+    "metric_worsened_count": 2,
+    "metric_unchanged_after_change_count": 1,
+    "metric_missed_remaining_error_count": 1058,
+    "metric_unchanged_or_not_attempted_count": 2786,
+    "metric_improvement_rate": 0.4,
+    "runtime_seconds": 8.487194538116455,
+    "seconds_per_sample": 0.00220503885116042
+  },
+  "outputs": {
+    "metrics_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_15_sentence_agent_v2_metrics.csv",
+    "manual_examples_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_16_sentence_agent_v2_manual_examples.csv"
+  },
+  "figures": {
+    "wer": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_sentence_agent_v2_wer.png",
+    "cer": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_sentence_agent_v2_cer.png",
+    "metric_labels": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_sentence_agent_v2_metric_labels.png",
+    "detector_reasons": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_sentence_agent_v2_detector_reasons.png"
+  },
+  "next_step": "Manual inspection, then separate OLM/LLM Sentence Agent or final Verification phase."
+}

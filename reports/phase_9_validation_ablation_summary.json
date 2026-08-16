@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "phase": "Phase 9 Validation Ablation Study",
+  "test_set_used": false,
+  "best_validation_system": "E5 Final Verified Agentic",
+  "best_validation_wer": 0.20586175852755828,
+  "best_validation_cer": 0.23446216704643671,
+  "best_validation_sentence_accuracy": 0.7243439854507664,
+  "ablation_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_9_validation_ablation_table.csv",
+  "important_note": "This ablation uses validation only. Test set remains unused.",
+  "next_phase": "Run frozen final pipeline on test set."
+}

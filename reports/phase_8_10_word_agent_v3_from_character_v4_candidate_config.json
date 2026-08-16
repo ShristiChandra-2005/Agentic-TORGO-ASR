@@ -1,0 +1,143 @@
+{
+  "phase": "Phase 8.10 - Word Correction Agent v3 Candidate Config",
+  "status": "pending_manual_review_not_frozen",
+  "character_input_version": "v4",
+  "character_input_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_2_character_agent_v4_predictions.csv",
+  "agent_definition": "Word-level post-processing after Character Agent: conservative confusion correction plus repetition/artifact cleanup.",
+  "input_column": "character_corrected",
+  "output_column": "word_corrected",
+  "vocabulary_source": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\train.csv",
+  "vocabulary_policy": "Training transcripts only. Validation ground truth is not used by the agent.",
+  "uses_llm": false,
+  "ground_truth_visible_to_agent": false,
+  "test_set_used": false,
+  "selected_config": {
+    "name": "strict_confusion_loose_repetition",
+    "confidence_threshold": 0.75,
+    "min_context_gain": 0.2,
+    "max_repeat_keep": 1,
+    "repeated_phrase_max_len": 7,
+    "min_repeated_word_count": 3
+  },
+  "confusion_groups": [
+    [
+      "to",
+      "too",
+      "two"
+    ],
+    [
+      "for",
+      "four"
+    ],
+    [
+      "their",
+      "there",
+      "they're"
+    ],
+    [
+      "hear",
+      "here"
+    ],
+    [
+      "know",
+      "no"
+    ],
+    [
+      "one",
+      "won"
+    ],
+    [
+      "right",
+      "write"
+    ],
+    [
+      "sea",
+      "see"
+    ],
+    [
+      "knew",
+      "new"
+    ],
+    [
+      "hour",
+      "our"
+    ],
+    [
+      "buy",
+      "by",
+      "bye"
+    ],
+    [
+      "than",
+      "then"
+    ],
+    [
+      "ate",
+      "eight"
+    ],
+    [
+      "be",
+      "bee"
+    ],
+    [
+      "were",
+      "where"
+    ],
+    [
+      "you're",
+      "your"
+    ],
+    [
+      "it's",
+      "its"
+    ]
+  ],
+  "artifact_tokens": [
+    "jpeg",
+    "jpg",
+    "png"
+  ],
+  "artifact_phrases": [
+    [
+      "input",
+      "images",
+      "story",
+      "starters"
+    ]
+  ],
+  "safety_policy": "No sentence rewriting. No semantic inference. Only confusion-token substitution, repeated word/phrase collapse, and obvious artifact removal.",
+  "automatic_label_policy": "Labels are metric-based only. Manual inspection is required before freezing.",
+  "metrics": {
+    "before_wer": 0.32539761928578576,
+    "after_wer": 0.2090627188156447,
+    "before_cer": 0.3398876404494382,
+    "after_cer": 0.2379979570990807,
+    "before_sentence_accuracy": 0.7243439854507664,
+    "after_sentence_accuracy": 0.7243439854507664,
+    "total_samples": 3849,
+    "total_changed": 42,
+    "metric_improved_count": 42,
+    "metric_worsened_count": 0,
+    "metric_unchanged_after_change_count": 0,
+    "metric_missed_remaining_error_count": 1019,
+    "metric_unchanged_or_not_attempted_count": 2788,
+    "metric_precision": 1.0,
+    "wer_delta": -0.11633490047014106,
+    "cer_delta": -0.1018896833503575,
+    "sentence_accuracy_delta": 0.0
+  },
+  "outputs": {
+    "word_predictions_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\predictions\\phase_8_7_word_agent_v3_from_character_v4_predictions.csv",
+    "word_metrics_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_8_word_agent_v3_from_character_v4_metrics.csv",
+    "word_tuning_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_9_word_agent_v3_from_character_v4_tuning.csv",
+    "word_manual_examples_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_10_word_agent_v3_from_character_v4_manual_examples.csv",
+    "word_correction_log_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_8_7_word_agent_v3_from_character_v4_correction_log.csv"
+  },
+  "figures": {
+    "wer": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_word_agent_v3_from_character_v4_wer.png",
+    "cer": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_word_agent_v3_from_character_v4_cer.png",
+    "metric_labels": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_word_agent_v3_from_character_v4_metric_labels.png",
+    "config_tuning": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_8_word_agent_v3_from_character_v4_tuning.png"
+  },
+  "next_step": "Inspect manual examples. Freeze only if corrections are acceptable."
+}

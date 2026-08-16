@@ -1,0 +1,17 @@
+{
+  "phase": 1,
+  "phase_name": "Dataset Validation",
+  "status": "completed",
+  "timestamp": "2026-07-09T20:51:34.172494",
+  "data_root": "E:\\AI_Project\\TORGO_DATASET",
+  "total_audio_files": 17635,
+  "usable_samples": 17201,
+  "unique_speakers": 15,
+  "unique_sessions": 4,
+  "manifest_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\phase_1_validated_manifest.csv",
+  "manifest_parquet": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\dataset\\phase_1_validated_manifest.parquet",
+  "quality_report_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_1_dataset_quality_report.csv",
+  "speaker_statistics_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_1_speaker_statistics.csv",
+  "problem_files_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_1_invalid_or_problem_files.csv",
+  "next_phase": "Phase 2 - Dataset Cleaning"
+}

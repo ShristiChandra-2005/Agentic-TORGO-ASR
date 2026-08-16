@@ -1,0 +1,14 @@
+{
+  "phase": 4,
+  "phase_name": "Exploratory Data Analysis + Publication Figures",
+  "status": "completed",
+  "timestamp": "2026-07-09T21:00:08.287747",
+  "dataset_statistics_json": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_4_dataset_statistics.json",
+  "summary_table_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_4_dataset_summary_table.csv",
+  "condition_statistics_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_4_condition_statistics.csv",
+  "speaker_statistics_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_4_speaker_statistics.csv",
+  "audio_examples_csv": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\reports\\phase_4_representative_audio_examples.csv",
+  "figure_dir": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\figures\\phase_4_eda",
+  "paper_figure_dir": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\paper\\figures",
+  "next_phase": "Phase 5 - Whisper Dataset Preparation"
+}

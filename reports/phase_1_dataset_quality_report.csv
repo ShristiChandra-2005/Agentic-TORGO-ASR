@@ -1,0 +1,12 @@
+metric,count
+total_audio_files,17635
+valid_audio,17585
+invalid_audio,50
+has_transcript,17254
+missing_transcript,381
+silent_audio,1
+too_short_or_long,48
+duplicate_audio,6
+usable_samples,17201
+unique_speakers,15
+unique_sessions,4

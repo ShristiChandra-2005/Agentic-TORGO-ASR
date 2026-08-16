@@ -1,0 +1,14 @@
+\begin{table}
+\caption{Final held-out test-set comparison (n = 3,030), evaluated exactly once.}
+\label{tab:table_5_final_test_results}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Pipeline & WER & CER & BLEU & ROUGE-L & Sentence Accuracy & Runtime (s) & Seconds / Sample & Samples \\
+\midrule
+Best Whisper (no GAN improved baseline) + Agentic AI & 0.2975 & 0.4239 & 69.5073 & 0.7060 & 0.6366 & 984.4915 & 0.3249 & 3030 \\
+Whisper Small & 0.4978 & 0.5980 & 51.6885 & 0.7041 & 0.6353 & 951.3583 & 0.3140 & 3030 \\
+Best Whisper (no GAN improved baseline) & 0.4978 & 0.5980 & 51.6885 & 0.7041 & 0.6353 & 928.0608 & 0.3063 & 3030 \\
+Whisper Tiny & 3.5095 & 3.8044 & 10.0845 & 0.5224 & 0.4195 & 499.6630 & 0.1649 & 3030 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,3 @@
+Model,Validation WER,Validation CER
+Whisper Tiny (fine-tuned),2.6133840152045615,3.5203504360807734
+Whisper Small (fine-tuned),0.3016905071521456,0.28023100495010606

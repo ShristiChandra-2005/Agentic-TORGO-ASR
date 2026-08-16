@@ -1,0 +1,15 @@
+{
+  "project": "Agentic TORGO ASR",
+  "best_whisper": "whisper_small",
+  "best_whisper_path": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\models\\whisper_small_finetuned\\best_model",
+  "best_gan": "No GAN improved baseline",
+  "best_pipeline": "Best Whisper Baseline",
+  "best_model_path": "E:\\AI_Project\\Agentic_TORGO_ASR_Project\\models\\whisper_small_finetuned\\best_model",
+  "validation_wer": 0.32599779933980194,
+  "validation_cer": 0.3400055001178597,
+  "validation_sentence_accuracy": 0.7233047544816835,
+  "fine_tuning_method": "Phase 6 Best Whisper",
+  "selection_reason": "Lowest validation WER with CER as tie-breaker",
+  "test_set_used": false,
+  "next_phase": "Phase 9 Agentic AI post-processing"
+}
